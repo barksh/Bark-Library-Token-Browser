@@ -11,15 +11,37 @@ import { panic } from "./error/panic";
 
 export class BarkAuthenticationToken {
 
-    public static fromString(token: string): BarkAuthenticationToken {
+    public static fromTokenOrNull(token: string): BarkAuthenticationToken | null {
 
         const parsedToken: JWTAuthenticationToken | null = JWTToken.fromTokenOrNull(token);
 
-        if (!parsedToken) {
+        if (parsedToken === null) {
+            return null;
+        }
+        return new BarkAuthenticationToken(token, parsedToken);
+    }
+
+    public static fromTokenOrUndefined(token: string): BarkAuthenticationToken | undefined {
+
+        const authenticationToken: BarkAuthenticationToken | null = BarkAuthenticationToken.fromTokenOrNull(token);
+
+        if (authenticationToken === null) {
+            return undefined;
+        }
+        return authenticationToken;
+    }
+
+    public static fromTokenOrThrow(token: string, error?: Error): BarkAuthenticationToken {
+
+        const authenticationToken: BarkAuthenticationToken | null = BarkAuthenticationToken.fromTokenOrNull(token);
+
+        if (authenticationToken === null) {
+            if (error) {
+                throw error;
+            }
             throw panic.code(ERROR_CODE.INVALID_AUTHENTICATION_TOKEN_1, token);
         }
-
-        return new BarkAuthenticationToken(token, parsedToken);
+        return authenticationToken;
     }
 
     private readonly _rawToken: string;
