@@ -1,6 +1,6 @@
 {
   "name": "@barksh/token-browser",
-  "version": "1.2.2",
+  "version": "1.0.0",
   "description": "Browser Token Library for Bark",
   "repository": {
     "type": "git",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@sudoo/jwt-web": "^3.1.0",
-    "@sudoo/magic": "^1.9.0",
     "connor": "^2.8.0"
   },
   "devDependencies": {
