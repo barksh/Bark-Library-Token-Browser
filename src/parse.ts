@@ -63,7 +63,9 @@ export const parseAuthenticationToken = (token: string): JWTAuthenticationToken 
         return null;
     }
 
-    if (typeof refreshToken.body.identifier !== "string") {
+    if (typeof refreshToken.body.identifier !== "string"
+        || typeof refreshToken.body.automation !== "boolean"
+        || typeof refreshToken.body.administrator !== "boolean") {
         return null;
     }
 
