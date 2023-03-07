@@ -74,7 +74,14 @@ export class BarkAuthenticationToken {
     public getTokenIdentifier(): string {
         return this._parsedToken.header.jti;
     }
+
     public getAccountIdentifier(): string {
         return this._parsedToken.body.identifier;
+    }
+    public isAutomation(): boolean {
+        return this._parsedToken.body.automation;
+    }
+    public isAdministrator(): boolean {
+        return this._parsedToken.body.administrator;
     }
 }
