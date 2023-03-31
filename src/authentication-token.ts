@@ -81,10 +81,20 @@ export class BarkAuthenticationToken {
     }
 
     public getExpireAtDate(): Date {
-        return new Date(this._parsedToken.header.exp);
+
+        const expireAt: number = this._parsedToken.header.exp;
+        if (typeof expireAt !== 'number') {
+            throw panic.code(ERROR_CODE.TIME_NOT_EXIST_1, "exp");
+        }
+        return new Date(expireAt * 1000);
     }
     public getIssueAtDate(): Date {
-        return new Date(this._parsedToken.header.iat);
+
+        const issuedAt: number = this._parsedToken.header.iat;
+        if (typeof issuedAt !== 'number') {
+            throw panic.code(ERROR_CODE.TIME_NOT_EXIST_1, "iat");
+        }
+        return new Date(issuedAt * 1000);
     }
 
     public getAccountIdentifier(): string {

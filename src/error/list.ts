@@ -10,4 +10,6 @@ export const ERROR_LIST: Record<ERROR_CODE, string> = {
 
     [ERROR_CODE.INVALID_REFRESH_TOKEN_1]: "Invalid refresh token: {}",
     [ERROR_CODE.INVALID_AUTHENTICATION_TOKEN_1]: "Invalid authentication token: {}",
+
+    [ERROR_CODE.TIME_NOT_EXIST_1]: "Time not exist: {}",
 };
