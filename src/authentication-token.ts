@@ -65,14 +65,27 @@ export class BarkAuthenticationToken {
         return this._parsedToken.verifyExpiration(currentDate);
     }
 
+    /**
+     * @returns {string} self domain - the domain name of the token consumer
+     */
     public getSelfDomain(): string {
         return this._parsedToken.header.aud;
     }
+    /**
+     * @returns {string} target domain - the domain name of the token issuer
+     */
     public getTargetDomain(): string {
         return this._parsedToken.header.iss;
     }
     public getTokenIdentifier(): string {
         return this._parsedToken.header.jti;
+    }
+
+    public getExpireAtDate(): Date {
+        return new Date(this._parsedToken.header.exp);
+    }
+    public getIssueAtDate(): Date {
+        return new Date(this._parsedToken.header.iat);
     }
 
     public getAccountIdentifier(): string {
