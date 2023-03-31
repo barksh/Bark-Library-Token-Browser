@@ -61,7 +61,6 @@ export class BarkAuthenticationToken {
     }
 
     public verifyExpiration(currentDate: Date = new Date()): boolean {
-
         return this._parsedToken.verifyExpiration(currentDate);
     }
 
