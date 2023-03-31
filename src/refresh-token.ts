@@ -65,12 +65,36 @@ export class BarkRefreshToken {
         return this._parsedToken.verifyExpiration(currentDate);
     }
 
+    /**
+     * @returns {string} self domain - the domain name of the token consumer
+     */
     public getSelfDomain(): string {
         return this._parsedToken.header.aud;
     }
+    /**
+     * @returns {string} target domain - the domain name of the token issuer
+     */
     public getTargetDomain(): string {
         return this._parsedToken.header.iss;
     }
+
+    public getExpireAtDate(): Date {
+
+        const expireAt: number = this._parsedToken.header.exp;
+        if (typeof expireAt !== 'number') {
+            throw panic.code(ERROR_CODE.TIME_NOT_EXIST_1, "exp");
+        }
+        return new Date(expireAt * 1000);
+    }
+    public getIssueAtDate(): Date {
+
+        const issuedAt: number = this._parsedToken.header.iat;
+        if (typeof issuedAt !== 'number') {
+            throw panic.code(ERROR_CODE.TIME_NOT_EXIST_1, "iat");
+        }
+        return new Date(issuedAt * 1000);
+    }
+
     public getTokenIdentifier(): string {
         return this._parsedToken.header.jti;
     }
