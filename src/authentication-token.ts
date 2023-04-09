@@ -97,7 +97,6 @@ export class BarkAuthenticationToken {
         }
         return new Date(notBefore * 1000);
     }
-
     public getExpireAtDate(): Date {
 
         const expireAt: number = this._parsedToken.header.exp;
