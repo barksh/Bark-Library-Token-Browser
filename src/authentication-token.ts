@@ -60,8 +60,17 @@ export class BarkAuthenticationToken {
         return this._parsedToken;
     }
 
+    public verifyIssueDate(currentDate: Date = new Date()): boolean {
+        return this._parsedToken.verifyIssueDate(currentDate);
+    }
+    public verifyNotBefore(currentDate: Date = new Date()): boolean {
+        return this._parsedToken.verifyNotBefore(currentDate);
+    }
     public verifyExpiration(currentDate: Date = new Date()): boolean {
         return this._parsedToken.verifyExpiration(currentDate);
+    }
+    public verifyTime(currentDate: Date = new Date()): boolean {
+        return this._parsedToken.verifyTime(currentDate);
     }
 
     /**
@@ -78,6 +87,15 @@ export class BarkAuthenticationToken {
     }
     public getTokenIdentifier(): string {
         return this._parsedToken.header.jti;
+    }
+
+    public getNotBeforeDate(): Date {
+
+        const notBefore: number | undefined = this._parsedToken.header.nbf;
+        if (typeof notBefore !== 'number') {
+            throw panic.code(ERROR_CODE.TIME_NOT_EXIST_1, "nbf");
+        }
+        return new Date(notBefore * 1000);
     }
 
     public getExpireAtDate(): Date {
