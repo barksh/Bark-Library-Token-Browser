@@ -16,14 +16,14 @@
     "@barksh/authentication-types": "*"
   },
   "dependencies": {
-    "@sudoo/jwt-web": "^3.1.0",
+    "@sudoo/jwt-web": "^3.2.0",
     "connor": "^2.8.0"
   },
   "devDependencies": {
     "@barksh/authentication-types": "^1.0.0",
     "@sudoo/triforce": "^3.11.0",
-    "global-jsdom": "^8.8.0",
-    "jsdom": "^21.1.1"
+    "global-jsdom": "*",
+    "jsdom": "*"
   },
   "nyc": {
     "extension": [
