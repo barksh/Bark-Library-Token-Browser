@@ -47,8 +47,6 @@ export type JWTAuthenticationTokenBody = {
 
     readonly automation: boolean;
     readonly administrator: boolean;
-
-    readonly refreshTokenIdentifier: string;
 };
 
 export type JWTAuthenticationToken = JWTToken<JWTAuthenticationTokenHeader, JWTAuthenticationTokenBody>;
